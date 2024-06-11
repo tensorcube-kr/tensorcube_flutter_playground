@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+// 다른 페이지들
+import 'pages/todo/page.dart';
+
 void main() {
   // URL 전략으로 path 방식을 사용하도록 설정합니다.
   setPathUrlStrategy();
@@ -27,6 +30,12 @@ final GoRouter _router = GoRouter(routes: <RouteBase>[
         path: 'another', // '/another' 경로
         builder: (BuildContext context, GoRouterState state) {
           return const AnotherPage(); // '/another' 경로에 대응하는 위젯을 반환합니다.
+        },
+      ),
+      GoRoute(
+        path: 'todo',
+        builder: (BuildContext context, GoRouterState state) {
+          return const ToDoPage();
         },
       )
     ],
@@ -64,6 +73,13 @@ class RootPage extends StatelessWidget {
                 context.go('/another'); // '/another' 경로로 이동합니다.
               },
               child: const Text('Go to another page'), // 버튼 텍스트
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                context.go('/todo');
+              },
+              child: const Text('Go to todo page'),
             ),
           ],
         ),
