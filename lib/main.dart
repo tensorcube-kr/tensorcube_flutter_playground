@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 
 // 다른 페이지들
 import 'pages/todo/page.dart';
+import 'pages/userinput/page.dart';
 
 void main() {
   // URL 전략으로 path 방식을 사용하도록 설정합니다.
@@ -36,6 +37,12 @@ final GoRouter _router = GoRouter(routes: <RouteBase>[
         path: 'todo',
         builder: (BuildContext context, GoRouterState state) {
           return const ToDoPage();
+        },
+      ),
+      GoRoute(
+        path: 'userinput',
+        builder: (BuildContext context, GoRouterState state) {
+          return const UserInputPage();
         },
       )
     ],
@@ -80,6 +87,13 @@ class RootPage extends StatelessWidget {
                 context.go('/todo');
               },
               child: const Text('Go to todo page'),
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                context.go('/userinput');
+              },
+              child: const Text('Go to user input page'),
             ),
           ],
         ),
